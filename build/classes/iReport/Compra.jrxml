@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Compra" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0834c99a-1282-485d-94ab-baf6d5433571">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="Table Dataset 1" uuid="59ac6cea-49ea-4896-8ea4-bf7678fb94f2"/>
+	<queryString>
+		<![CDATA[SELECT C.CODIGO_COMPRA as Compra, P.DESCRICAO as Produto, CONCAT('R$ ',I.VALOR_ITEM) as 'Val. Uni.',I.QUANTIDADE as Quantidade, CONCAT('R$ ',I.VALOR_TOTAL_ITEM) as 'Val. Tot.', DATE_FORMAT(I.DATA_ENTREGA, '%d/%m/%Y') as 'Data compra', I.FORMA_PAGAMENTO as 'Tipo Pagamento', F.RAZAO_SOCIAL as Fornecedor, FU.NOME_FUNCIONARIO as Funcionario
+FROM COMPRA C
+JOIN ITEM_COMPRA I ON C.CODIGO_COMPRA = I.CODIGO_COMPRA
+JOIN FORNECEDOR F ON C.CODIGO_FORNECEDOR = F.CODIGO_FORNECEDOR
+LEFT JOIN FUNCIONARIO FU ON C.CODIGO_FUNCIONARIO = C.CODIGO_FUNCIONARIO
+JOIN PRODUTO P ON I.CODIGO_PRODUTO = P.CODIGO_PRODUTO WHERE C.CODIGO_COMPRA = 3]]>
+	</queryString>
+	<field name="Compra" class="java.lang.Long"/>
+	<field name="Produto" class="java.lang.String"/>
+	<field name="Val. Uni." class="java.lang.String"/>
+	<field name="Quantidade" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Val. Tot." class="java.lang.String"/>
+	<field name="Data compra" class="java.lang.String"/>
+	<field name="Tipo Pagamento" class="java.lang.String"/>
+	<field name="Fornecedor" class="java.lang.String"/>
+	<field name="Funcionario" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="63" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="45" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="36" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch">
+			<line>
+				<reportElement x="497" y="16" width="270" height="1" uuid="e724c657-e34b-4fa5-94f2-e8eab2667d5b"/>
+			</line>
+			<staticText>
+				<reportElement x="590" y="22" width="100" height="20" uuid="fb1cb06b-1158-4da6-980c-22ab3ca05a00"/>
+				<text><![CDATA[Ass. Funcionario]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>
